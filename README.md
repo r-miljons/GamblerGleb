@@ -1,6 +1,8 @@
 # GamblerGleb
 My first project about JS and DOM manipulation, a little gambling game.
 
+Link to the site: https://sienaone.github.io/GamblerGleb/
+
 ### 1. Gameplay description
  * You start with a set amount of Money and a full Sober-o-Meter (Meaning you're 100% sober).
  * Set the amount of Money you want to Bet.
