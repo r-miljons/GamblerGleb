@@ -1,0 +1,136 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* intro page */
+
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    justify-content: center;
+    margin: auto;
+    padding: 5%;
+}
+
+#wrapper > p {
+    font-family: cursive;
+    padding: 0 10%;
+    margin-bottom: 2rem;
+}
+
+#wrapper > button {
+    width: fit-content;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    color: black;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    background-color: rgb(140, 106, 252);
+    border-radius: 3px;
+}
+
+#intro-logo {
+    width: 90vw;
+    max-width: max-content;
+    height: auto;
+    max-height: 300px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+/* game section */
+
+.game {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 5%;
+    background-color: aqua;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: 1fr auto;
+}
+
+/* Money -------------------- */
+
+.money-box {
+    background-color: red;
+    height: 100px;
+    width: 100px;
+    grid-area: 1;
+}
+
+/* Sober Meter -------------------- */
+
+.sober-box {
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    width: 300px;
+}
+
+.meter {
+    width: 300px;
+    height: 50px;
+    background-color: orange;
+    grid-area: 1/ 2/ 1/ 2;
+    z-index: 2;
+}
+
+.meter-under {
+    position: absolute;
+    width: 300px;
+    height: 50px;
+    background-color: grey;
+    grid-area: 1/ 2/ 1/ 2;
+    z-index: 1;
+}
+
+/* Bottle -------------------- */
+
+.bottle {
+    grid-area: 2 / 1 / 2 / 1;
+    align-self: flex-end;
+    background-color: red;
+    width: 100px;
+    height: 150px;
+}
+
+/* Slot Machine -------------------- */
+
+.slot-machine {
+    grid-area: 2/ 2/ 2/ 2;
+    display: flex;
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+    justify-self: center;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5%;
+}
+
+.slot {
+    height: 80px;
+    width: 40px;
+    background-color: aliceblue;
+}
+
+/* Lever -------------------- */
+
+.lever {
+    grid-area: 2/ 3/ 2/ 3;
+    width: 50px;
+    height: 200px;
+    background-color: red;
+    align-self: flex-end;
+    transition: height 300ms;
+}
+
+
