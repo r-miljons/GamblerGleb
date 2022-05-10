@@ -663,4 +663,51 @@ lever.addEventListener("click", pullLever);
 lever.addEventListener("click", resetLever);
 lever.addEventListener("click", startSlotMachine);
 
+// ---------------- Tutorial Section ----------------
+
+let tutorialOne = document.querySelector(".first");
+let tutorialSteps = document.querySelectorAll(".step");
+let nextButton = document.querySelectorAll(".next-step");
+let skipButton = document.querySelectorAll(".skip-tutorial");
+
+function showTutorial () {
+        tutorialOne.style.display = "block";
+        tutorialOne.style.animation = "appear 300ms";
+        setTimeout(() => {tutorialOne.style.animation = "none";}, 300);
+}
+
+window.onload = setTimeout(showTutorial, 1000);
+
+let currentStep = 0;
+
+function nextStep () {
+        currentStep++;
+        tutorialSteps[currentStep - 1].style.display = "none";
+        if (currentStep < 5) {
+        setTimeout(() => {
+                tutorialSteps[currentStep].style.display = "block";
+                tutorialSteps[currentStep].style.animation = "appear 300ms";
+                setTimeout(() => {tutorialSteps[currentStep].style.animation = "none";}, 300);
+        }, 200)
+        }
+}
+
+function skipTutorial () {
+        tutorialSteps[currentStep].style.display = "none";
+}
+
+nextButton[currentStep].addEventListener("click", nextStep);
+skipButton[currentStep].addEventListener("click", skipTutorial);
+// for some reason this stops working, so i just typed out each button, i think it's because it doesn't use the latest current step value.
+nextButton[1].addEventListener("click", nextStep);
+nextButton[2].addEventListener("click", nextStep);
+nextButton[3].addEventListener("click", nextStep);
+
+skipButton[1].addEventListener("click", skipTutorial);
+skipButton[2].addEventListener("click", skipTutorial);
+skipButton[3].addEventListener("click", skipTutorial);
+
+
+
+
 
