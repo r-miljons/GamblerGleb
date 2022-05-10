@@ -4,6 +4,12 @@
     padding: 0;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+p {
+    font-family:'Public Sans', sans-serif;
+}
+
 /* intro page */
 
 #wrapper {
@@ -13,6 +19,7 @@
     justify-content: center;
     margin: auto;
     padding: 5%;
+    
 }
 
 #wrapper > p {
@@ -47,59 +54,152 @@
 
 /* game section */
 
+
+
+body {
+    background-color: rgb(231, 231, 231);
+}
+
 .game {
+    justify-content: center;
     max-width: 800px;
     margin: 0 auto;
     padding: 5%;
-    background-color: aqua;
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    grid-template-rows: 1fr auto;
+    grid-template-columns: repeat(3, max-content);
+    grid-template-rows: 1fr auto 1fr;
+    z-index: 1;
+}
+
+@media (max-width: 600px) {
+    .game {
+        transform: scale(0.7);
+    }
 }
 
 /* Money -------------------- */
 
 .money-box {
-    background-color: red;
     height: 100px;
     width: 100px;
     grid-area: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.money-box img {
+    width: 80%;
+}
+
+.money {
+    font-size: 1.3rem;
+    font-weight: 600;
 }
 
 /* Sober Meter -------------------- */
 
 .sober-box {
     display: flex;
+    position: relative;
     align-content: center;
+    justify-self: center;
+    align-self: center;
     flex-direction: column;
     width: 300px;
+    height: 50px;
+    grid-area: 1/ 2/ 1/ 2;
+    margin: 0 1rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 4px solid rgb(66, 65, 65)
 }
 
 .meter {
-    width: 300px;
-    height: 50px;
+    width: 100%;
+    height: 100%;
     background-color: orange;
-    grid-area: 1/ 2/ 1/ 2;
     z-index: 2;
+    box-shadow: 0 0 5px black;
+    
 }
 
 .meter-under {
     position: absolute;
-    width: 300px;
-    height: 50px;
+    width: 100%;
+    height: 100%;
     background-color: grey;
-    grid-area: 1/ 2/ 1/ 2;
+    
     z-index: 1;
 }
+
+.sober-text {
+    position: absolute;
+    align-self: center;
+    z-index: 3;
+    transform: translate(0, 50%);
+    color: rgb(71, 71, 71);
+    font-weight: bold;
+    
+}
+
 
 /* Bottle -------------------- */
 
 .bottle {
     grid-area: 2 / 1 / 2 / 1;
     align-self: flex-end;
-    background-color: red;
     width: 100px;
     height: 150px;
+    display:flex;
+    transition: all 100ms;
+}
+
+.bottle:hover {
+    cursor: pointer;
+}
+
+.bottle:active {
+    transform: scale(0.9) rotate(10deg);
+}
+
+.bottle img {
+    height: 80%;
+    align-self: flex-end;
+}
+
+/* this div is home to the changes in money animation */
+
+.changed-money {
+    grid-area: 2 / 1 / 2 / 1;
+    justify-self: center;
+    margin-top: 20%;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: green;
+    text-shadow: 0 0 2px grey;
+    opacity: 0;
+    height: max-content;
+}
+
+@keyframes moneySlide {
+    0% {
+        opacity: 0;
+        margin-top: 20%;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        margin-top: 8%;
+        opacity: 0;
+    }
 }
 
 /* Slot Machine -------------------- */
@@ -107,19 +207,77 @@
 .slot-machine {
     grid-area: 2/ 2/ 2/ 2;
     display: flex;
-    width: 200px;
+    width: 260px;
     height: 200px;
-    background-color: blue;
+    background-color: rgb(204, 0, 255);
     justify-self: center;
     justify-content: space-around;
     align-items: center;
     padding: 5%;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    border: 4px solid gold;
+    border-bottom: none;
+    box-shadow: inset 0 0 5px rgb(77, 77, 77);
 }
 
 .slot {
     height: 80px;
-    width: 40px;
+    width: 50px;
     background-color: aliceblue;
+    text-align: center;
+    overflow: hidden;
+    border: 4px solid black;
+    box-shadow: inset 0 0 5px rgb(0, 0, 0);
+    /* border: 4px solid rgb(255, 255, 0); when all slots are the same*/
+}
+
+.slots {
+    list-style-type: none;
+    font-size: 2rem;
+    margin-top: 30%;
+    /*animation: slide miliseconds linear forwards; to be added in JS*/
+}
+
+
+.slot ul li {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+
+/*
+.one {
+     border: 4px solid rgb(21, 254, 0);
+     border: 4px solid orange; 
+}
+
+.two {
+     border: 4px solid rgb(21, 254, 0); 
+}
+
+.three {
+     border: 4px solid rgb(21, 254, 0);
+     border: 4px solid orange;  
+}
+*/
+
+@keyframes slide {
+    0% {
+        margin-top: 30%;
+    }
+    25% {
+        margin-top: -100%;
+    }
+    50% {
+        margin-top: -230%;
+    }
+    75% {
+        margin-top: -370%; 
+    }
+    100% {
+        margin-top: -500%;
+    }
 }
 
 /* Lever -------------------- */
@@ -128,9 +286,147 @@
     grid-area: 2/ 3/ 2/ 3;
     width: 50px;
     height: 200px;
-    background-color: red;
+    background-color: transparent;
     align-self: flex-end;
-    transition: height 300ms;
+    justify-self: flex-start;
+    transition: all 300ms;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    
 }
+
+.lever:hover {
+    cursor: pointer;
+}
+
+.ball {
+    background-color: rgb(180, 0, 0);
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    position: absolute;
+    margin-top: 50%;
+    z-index: -1;
+    border: 4px solid rgb(44, 44, 44);
+}
+
+.stem {
+    width: 10px;
+    height: 90%;
+    justify-self: flex-end;
+    background-color: rgb(159, 23, 186);
+    margin-top: 60%;
+    z-index: -2;
+}
+
+/* Betting Section -------------------- */
+
+.bettings {
+    grid-area: 3/ 2/ 3/ 2;
+    width: 200px;
+    height: 50px;
+    
+    justify-self: center;
+    align-self: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+}
+
+.bet-change {
+    background-color: bisque;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    border-radius: 1rem;
+    border: 4px solid rgb(102, 101, 101);
+}
+
+.bet-change:hover {
+    cursor: pointer;
+}
+
+.bet-change:active {
+    background-color: rgb(232, 188, 160);
+    box-shadow: inset 1px 1px 4px grey;
+}
+
+.bet-change::selection {
+    background-color: transparent;
+}
+
+.bet-amount {
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    color: black;
+}
+
+/* table is the line that that the slot machine sits on */
+
+.table {
+    grid-area: 3/2 /3/2;
+    width: 160%;
+    height: 12px;
+    background-color: rgb(252, 179, 90);
+    border-radius: 1rem;
+    margin-left: -35%;
+    box-shadow: 0 3px 5px rgb(102, 101, 101);
+    
+}
+
+/* ------------------------------ The tutorial section -------------------- */
+
+.tutorial {
+    position: absolute;
+    z-index: 4;
+}
+
+.tutorial h2 {
+    font-family: 'Public Sans', sans-serif;
+    padding-bottom: 0.5rem;
+}
+
+.tutorial p {
+    padding: 0 0.5rem 0.5rem 0.5rem;
+
+}
+
+.step {
+    background-color: rgb(255, 255, 255);
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid grey;
+    box-shadow: 0 0 8px rgb(192, 192, 192);
+}
+
+.tut-nav {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.next-step {
+    font-weight: 600;
+    color: rgb(41, 177, 230);
+    text-decoration: underline;
+    padding: 0 1rem;
+}
+
+.next-step:hover {
+    cursor: pointer;
+}
+
+.skip-tutorial {
+    font-weight: 600;
+    color: rgb(236, 58, 150);
+    text-decoration: underline; 
+}
+
+.skip-tutorial:hover {
+    cursor: pointer;
+}
+
 
 
