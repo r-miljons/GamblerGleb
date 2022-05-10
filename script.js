@@ -707,6 +707,20 @@ skipButton[1].addEventListener("click", skipTutorial);
 skipButton[2].addEventListener("click", skipTutorial);
 skipButton[3].addEventListener("click", skipTutorial);
 
+/* the code I found online to fix this problem 
+
+var buttons = document.querySelectorAll(".color-buttons button");
+var color_name = document.getElementById("color-name");
+
+buttons.forEach(function(btn){
+  btn.addEventListener("click", function(){
+    color_name.style.background=this.id;
+    color_name.innerHTML=this.id;
+  });
+});
+
+*/
+
 
 
 
