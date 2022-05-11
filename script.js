@@ -673,6 +673,9 @@ let skipButton = document.querySelectorAll(".skip-tutorial");
 function showTutorial () {
         tutorialOne.style.display = "block";
         tutorialOne.style.animation = "appear 300ms";
+        document.querySelector(".on-lever").style.display = "block";
+        document.querySelector(".on-lever").style.animation = "appear 300ms, focus 3s infinite";
+        document.querySelector(".lever").addEventListener("click", nextStep);
         setTimeout(() => {tutorialOne.style.animation = "none";}, 300);
 }
 
@@ -690,10 +693,32 @@ function nextStep () {
                 setTimeout(() => {tutorialSteps[currentStep].style.animation = "none";}, 300);
         }, 200)
         }
+        if (currentStep == 1) {
+                document.querySelector(".on-lever").style.display = "none";
+                document.querySelector(".lever").removeEventListener("click", nextStep);
+                document.querySelector(".on-beer").style.display = "block";
+                document.querySelector(".bottle").addEventListener("click", nextStep);
+        }
+        if (currentStep == 2) {
+                document.querySelector(".sober-box").style.boxShadow = "0 0 0 max(200vh, 200vw) rgba(0, 0, 0, .3)";
+                document.querySelector(".on-beer").style.display = "none";
+                document.querySelector(".bottle").removeEventListener("click", nextStep);
+        } else { 
+                document.querySelector(".sober-box").style.boxShadow = "none";
+        }
+        if (currentStep == 3) {
+                document.querySelector(".on-bet").style.display = "block";
+                document.querySelector(".bettings").addEventListener("click", nextStep);
+        }
+        if (currentStep == 4) {
+                document.querySelector(".on-bet").style.display = "none";
+                document.querySelector(".bettings").removeEventListener("click", nextStep);
+        }
 }
 
 function skipTutorial () {
         tutorialSteps[currentStep].style.display = "none";
+        document.querySelector(".sober-box").style.boxShadow = "none";
 }
 
 nextButton[currentStep].addEventListener("click", nextStep);
@@ -706,6 +731,7 @@ nextButton[3].addEventListener("click", nextStep);
 skipButton[1].addEventListener("click", skipTutorial);
 skipButton[2].addEventListener("click", skipTutorial);
 skipButton[3].addEventListener("click", skipTutorial);
+skipButton[4].addEventListener("click", skipTutorial);
 
 /* the code I found online to fix this problem 
 
