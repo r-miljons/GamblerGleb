@@ -701,10 +701,14 @@ function nextStep () {
         }
         if (currentStep == 2) {
                 document.querySelector(".sober-box").style.boxShadow = "0 0 0 max(200vh, 200vw) rgba(0, 0, 0, .3)";
+                document.querySelector(".sober-box").style.WebkitBoxShadow = "0 0 0 max(200vh, 200vw) rgba(0, 0, 0, .3)";
+                document.querySelector(".sober-box").style.MozBoxShadow = "0 0 0 max(200vh, 200vw) rgba(0, 0, 0, .3)";
                 document.querySelector(".on-beer").style.display = "none";
                 document.querySelector(".bottle").removeEventListener("click", nextStep);
         } else { 
                 document.querySelector(".sober-box").style.boxShadow = "none";
+                document.querySelector(".sober-box").style.WebkitBoxShadow = "none";
+                document.querySelector(".sober-box").style.MozBoxShadow = "none";
         }
         if (currentStep == 3) {
                 document.querySelector(".on-bet").style.display = "block";
