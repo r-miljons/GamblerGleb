@@ -490,9 +490,9 @@ body {
 
 .focused {
     display: none;
-    box-shadow: 0 0 0 max(200vh, 200vw) rgba(0, 0, 0, .3);
-    -webkit-box-shadow: 0 0 0 max(200vh, 200vw) rgba(0, 0, 0, .3);
-    -moz-box-shadow: 0 0 0 max(200vh, 200vw) rgba(0, 0, 0, .3);
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, .3);
+    -webkit-box-shadow: 0 0 0 9999px rgba(0, 0, 0, .3);
+    -moz-box-shadow: 0 0 0 9999px rgba(0, 0, 0, .3);
     border-radius: 100%;
     width: 3rem;
     height: 3rem;
@@ -544,5 +544,62 @@ body {
 }
 
 
+/* ----------You lose screen / Bad ending---------------- */
 
+.the-end-container {
+    top: 0;
+    z-index: 9;
+    position:absolute;
+    width:100vw;
+    height:100vh;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.404);
+    justify-content: center;
+}
 
+.the-end {
+    z-index: 10;
+    top: 10vh;
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid grey;
+    box-shadow: 0 0 8px rgb(192, 192, 192);
+    margin: 0 5%;
+    max-width: max-content;
+    min-width: min-content;
+    transform: translate(0, 60%);
+}
+
+.the-end h2 {
+    font-family: 'Public Sans', sans-serif;
+    padding-bottom: 0.5rem;
+    text-align: center;
+}
+
+.the-end p {
+    padding: 0 0.5rem 0.5rem 0.5rem;
+    line-height: 1.4rem;
+}
+
+.restart {
+    width: max-content;
+    margin: 0.5rem auto;
+    background-color: rgb(255, 0, 132);
+    border-radius: 10px;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    color: white;
+    padding: 0.8rem;
+    border: 3px solid black;
+}
+
+.restart p {
+    padding: 0;
+}
+
+.restart:hover, .restart:active {
+    background-color: rgb(168, 4, 56);
+    cursor: pointer;
+}

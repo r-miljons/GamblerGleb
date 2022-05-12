@@ -24,7 +24,10 @@ function removeMoney(amount) {
                 moneyAnimation.style.animation = "none";
         },1000);
 }
+/* if no money left */
 
+
+let theEnd = document.querySelector(".the-end-container");
 
 
 
@@ -44,14 +47,18 @@ let fullMeter = 100;
 let executed = false;
 
 function beerClick() {
-if (money >= 20 && fullMeter >= 10) {
+if (money > 0 && fullMeter >= 10) {
         function subtractFromMeterAndMoney() {
                 /*check if theres enough money left for a drink and if not too drunk before subtracting from the meter */
-                if (money >= 20 && fullMeter >= 10) {
+                if (money > 0 && fullMeter >= 10) {
                         fullMeter -= 10;
                         meter.style.width = fullMeter + "%";
                         money -= 20;
-                        moneyCss.textContent = money + "$";
+                        if (money > 0) {
+                                moneyCss.textContent = money + "$";
+                        } else { 
+                                moneyCss.textContent = "0$";
+                                theEnd.style.display = "flex"; }
                 }
         }
 
@@ -95,10 +102,61 @@ const betAmount = document.querySelector(".bet-amount");
 
 let currentBet = 20;
 
+/* clicking the + button will increment the bet amount by 20 */
+
 function incrementBet () {
         currentBet += 20;
         betAmount.textContent = currentBet;
 }
+
+/* holding the + button will increment the bet amount continuously by 20 */
+
+
+ let positiveIncrement;
+ let timeOut;
+
+ function mouseDownPositive () { 
+         mouseUp();
+         timeOut = setTimeout(function () {
+                 console.log("Mouse Down");
+                 positiveIncrement = setInterval(() => {
+                         currentBet += 20;
+                         betAmount.textContent = currentBet; 
+                 }, 100);
+         }, 400);
+ };
+
+ /* same for - button but reversed */
+
+ let negativeIncrement;
+
+ function mouseDownNegative () { 
+        mouseUp();
+        timeOut = setTimeout(function () {
+                console.log("Mouse Down");
+                negativeIncrement = setInterval(() => {
+                        if (currentBet > 20) { 
+                                currentBet -= 20;
+                                betAmount.textContent = currentBet; 
+                        }
+                }, 50);
+        }, 400);
+};
+
+ function mouseUp () {
+         if (timeOut) {
+                 clearInterval(positiveIncrement);
+                 clearInterval(negativeIncrement);
+                 clearTimeout(timeOut);
+         }
+ };
+
+ decrementButton.addEventListener("mousedown", mouseDownNegative);
+ incrementButton.addEventListener("mousedown", mouseDownPositive);
+ document.body.addEventListener("mouseup", mouseUp); 
+
+
+incrementButton.addEventListener("click", incrementBet);
 
 function decrementBet () {
         if (currentBet > 20) {
@@ -107,7 +165,15 @@ function decrementBet () {
         }
 }
 
-incrementButton.addEventListener("click", incrementBet);
+function holdDecrementBet () {
+        setTimeout(function () {
+                let intervalID = setInterval(() => {
+                       currentBet -= 20; 
+                }, 100);
+        }, 400);
+}
+
+
 decrementButton.addEventListener("click", decrementBet);
 
 /*-----------------------This section is about the lever and the Slot machine--------------------*/
@@ -569,81 +635,137 @@ function startSlotMachine() {
                         } 
                         // no slots are the same
                         else {
+                                
                                 switch (true) {
                                         // every drink you take multiplies your winnings, BUT Also your losses!
                                         case fullMeter < 10: {
                                                 money -= currentBet*20;
-                                                moneyCss.textContent = money + "$";
+                                                if (money > 0) {  
+                                                        moneyCss.textContent = money + "$";
+                                                        } else { 
+                                                        moneyCss.textContent = "0$";
+                                                        theEnd.style.display = "flex";
+                                                }
                                                 setTimeout(() => {
                                                         removeMoney(currentBet*20);
                                                         }, 400);
                                         }; break;
                                         case fullMeter < 20: {
                                                 money -= currentBet*18;
-                                                moneyCss.textContent = money + "$";
+                                                if (money > 0) {  
+                                                        moneyCss.textContent = money + "$";
+                                                        } else { 
+                                                        moneyCss.textContent = "0$";
+                                                        theEnd.style.display = "flex";
+                                                }
                                                 setTimeout(() => {
                                                         removeMoney(currentBet*18);
                                                         }, 400);
                                         }; break;
                                         case fullMeter < 30: {
                                                 money -= currentBet*17;
-                                                moneyCss.textContent = money + "$";
+                                                if (money > 0) {  
+                                                        moneyCss.textContent = money + "$";
+                                                        } else { 
+                                                        moneyCss.textContent = "0$";
+                                                        theEnd.style.display = "flex";
+                                                }
                                                 setTimeout(() => {
                                                         removeMoney(currentBet*17);
                                                         }, 400);
                                         }; break;
                                         case fullMeter < 40: {
                                                 money -= currentBet*16;
-                                                moneyCss.textContent = money + "$";
+                                                if (money > 0) {  
+                                                        moneyCss.textContent = money + "$";
+                                                        } else { 
+                                                        moneyCss.textContent = "0$";
+                                                        theEnd.style.display = "flex";
+                                                }
                                                 setTimeout(() => {
                                                         removeMoney(currentBet*16);
                                                         }, 400);
                                         }; break;
                                         case fullMeter < 50: {
                                                 money -= currentBet*14;
-                                                moneyCss.textContent = money + "$";
+                                                if (money > 0) {  
+                                                        moneyCss.textContent = money + "$";
+                                                        } else { 
+                                                        moneyCss.textContent = "0$";
+                                                        theEnd.style.display = "flex";
+                                                }
                                                 setTimeout(() => {
                                                         removeMoney(currentBet*14);
                                                         }, 400);
                                         }; break;
                                         case fullMeter < 60: {
                                                 money -= currentBet*13;
-                                                moneyCss.textContent = money + "$";
+                                                if (money > 0) {  
+                                                        moneyCss.textContent = money + "$";
+                                                        } else { 
+                                                        moneyCss.textContent = "0$";
+                                                        theEnd.style.display = "flex";
+                                                }
                                                 setTimeout(() => {
                                                         removeMoney(currentBet*13);
                                                         }, 400);
                                         }; break;
                                         case fullMeter < 70: {
                                                 money -= currentBet*11;
-                                                moneyCss.textContent = money + "$";
+                                                if (money > 0) {  
+                                                        moneyCss.textContent = money + "$";
+                                                        } else { 
+                                                        moneyCss.textContent = "0$";
+                                                        theEnd.style.display = "flex";
+                                                }
                                                 setTimeout(() => {
                                                         removeMoney(currentBet*11);
                                                         }, 400);
                                         }; break;
                                         case fullMeter < 80: {
                                                 money -= currentBet*10;
-                                                moneyCss.textContent = money + "$";
+                                                if (money > 0) {  
+                                                        moneyCss.textContent = money + "$";
+                                                        } else { 
+                                                        moneyCss.textContent = "0$";
+                                                        theEnd.style.display = "flex";
+                                                }
                                                 setTimeout(() => {
                                                         removeMoney(currentBet*10);
                                                         }, 400);
                                         }; break;
                                         case fullMeter < 90: {
                                                 money -= currentBet*8;
-                                                moneyCss.textContent = money + "$";
+                                                if (money > 0) {  
+                                                        moneyCss.textContent = money + "$";
+                                                        } else { 
+                                                        moneyCss.textContent = "0$";
+                                                        theEnd.style.display = "flex";
+                                                }
                                                 setTimeout(() => {
                                                         removeMoney(currentBet*8);
                                                         }, 400);
                                         }; break;
                                         case fullMeter < 100: {
                                                 money -= currentBet*7;
-                                                moneyCss.textContent = money + "$";
+                                                if (money > 0) {  
+                                                        moneyCss.textContent = money + "$";
+                                                        } else { 
+                                                        moneyCss.textContent = "0$";
+                                                        theEnd.style.display = "flex";
+                                                }
                                                 setTimeout(() => {
                                                         removeMoney(currentBet*7);
                                                         }, 400);
                                         }; break;
                                         case fullMeter == 100: {
                                                 money -= currentBet*5;
-                                                moneyCss.textContent = money + "$";
+                                                if (money > 0) {  
+                                                        moneyCss.textContent = money + "$";
+                                                        } else { 
+                                                        moneyCss.textContent = "0$";
+                                                        theEnd.style.display = "flex";
+                                                }
                                                 setTimeout(() => {
                                                         removeMoney(currentBet*5);
                                                         }, 400);
@@ -666,6 +788,7 @@ lever.addEventListener("click", startSlotMachine);
 // ---------------- Tutorial Section ----------------
 
 let tutorialOne = document.querySelector(".first");
+let focusedSpotlight = document.querySelector(".focused");
 let tutorialSteps = document.querySelectorAll(".step");
 let nextButton = document.querySelectorAll(".next-step");
 let skipButton = document.querySelectorAll(".skip-tutorial");
@@ -700,9 +823,9 @@ function nextStep () {
                 document.querySelector(".bottle").addEventListener("click", nextStep);
         }
         if (currentStep == 2) {
-                document.querySelector(".sober-box").style.boxShadow = "0 0 0 max(200vh, 200vw) rgba(0, 0, 0, .3)";
-                document.querySelector(".sober-box").style.WebkitBoxShadow = "0 0 0 max(200vh, 200vw) rgba(0, 0, 0, .3)";
-                document.querySelector(".sober-box").style.MozBoxShadow = "0 0 0 max(200vh, 200vw) rgba(0, 0, 0, .3)";
+                document.querySelector(".sober-box").style.boxShadow = "0 0 0 9999px rgba(0, 0, 0, .3)";
+                document.querySelector(".sober-box").style.WebkitBoxShadow = "0 0 0 9999px rgba(0, 0, 0, .3)";
+                document.querySelector(".sober-box").style.MozBoxShadow = "0 0 0 9999px rgba(0, 0, 0, .3)";
                 document.querySelector(".on-beer").style.display = "none";
                 document.querySelector(".bottle").removeEventListener("click", nextStep);
         } else { 
@@ -722,7 +845,14 @@ function nextStep () {
 
 function skipTutorial () {
         tutorialSteps[currentStep].style.display = "none";
+        focusedSpotlight.style.display = "none";
+        document.querySelector(".on-lever").style.display = "none";
+        document.querySelector(".on-beer").style.display = "none";
+        document.querySelector(".on-bet").style.display = "none";
         document.querySelector(".sober-box").style.boxShadow = "none";
+        document.querySelector(".lever").removeEventListener("click", nextStep);
+        document.querySelector(".bottle").removeEventListener("click", nextStep);
+        document.querySelector(".bettings").removeEventListener("click", nextStep);
 }
 
 nextButton[currentStep].addEventListener("click", nextStep);
