@@ -1,4 +1,4 @@
-# GamblerGleb
+# GamblerGleb ♦♥♣♠
 
 My first project about JavaScript and Document-Object-Model manipulation, a little gambling game. I made it as soon as I learned about using JavaScript to change, add and remove HTML elements.
 
