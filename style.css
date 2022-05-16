@@ -25,6 +25,8 @@ p {
     max-width: max-content;
     max-height: max-content;
     margin-bottom: 2rem;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .img-wrapper p {
